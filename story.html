@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script>
+        // Decoding the encoded CSS content
+        const encodedCSS = 'Ym9keSB7DQogICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOw0KICAgIG1hcmdpbjogMDsNCiAgICBwYWRkaW5nOiAwOw0KICAgIGJhY2tncm91bmQtY29sb3I6ICNmNGY0ZjQ7DQogICAgY29sb3I6ICMzMzM7DQp9DQouY29udGVudCB7DQogICAgbWFyZ2luOiAyMHB4Ow0KICAgIHBhZGRpbmc6IDIwcHg7DQogICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjsNCiAgICBib3JkZXItcmFkaXVzOiA4cHg7DQogICAgYm94LXNoYWRvdzogMCAycHggOHB4IHJnYmEoMCwgMCwgMCwgMC4xKTsNCiAgICBmb250LXNpemU6IGxhcmdlcjsNCiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7DQp9DQouYnV0dG9uIHsNCiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjBmMGYwOw0KICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7DQogICAgcGFkZGluZzogMTBweCAyMHB4Ow0KICAgIG1hcmdpbjogMTBweCA1cHg7DQogICAgY3Vyc29yOiBwb2ludGVyOw0KICAgIGJvcmRlci1yYWRpdXM6IDVweDsNCiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7DQogICAgZm9udC1zaXplOiBsYXJnZTsNCn0NCi5idXR0b246aG92ZXIgew0KICAgIGJhY2tncm91bmQtY29sb3I6ICNlMGUwZTA7DQp9DQouYnV0dG9uLmRpc2FibGVkIHsNCiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGRkOw0KICAgIGN1cnNvcjogbm90LWFsbG93ZWQ7DQp9DQpoMSB7DQogICAgZm9udC1zaXplOiAzcmVtOw0KICAgIG1hcmdpbi1ib3R0b206IDIwcHg7DQogICAgdGV4dC1hbGlnbjogY2VudGVyOw0KfQ0KaDIgew0KICAgIGZvbnQtc2l6ZTogMS41cmVtOw0KICAgIG1hcmdpbi10b3A6IDUwcHg7DQogICAgdGV4dC1hbGlnbjogY2VudGVyOw0KfQ0KLm9wdGlvbnMgew0KICAgIG1hcmdpbi10b3A6IDIwcHg7DQp9DQojYnV0dG9uQ29udGFpbmVyIHsNCiAgICBtYXJnaW46IDIwcHg7DQogICAgZGlzcGxheTogZmxleDsNCiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47DQp9DQ==';
+        const decodedCSS = decodeURIComponent(escape(atob(encodedCSS)));  // Decode from Base64
+        const styleElement = document.createElement('style');  // Create a new <style> tag
+        styleElement.innerHTML = decodedCSS;  // Insert the decoded CSS into the <style> tag
+        document.head.appendChild(styleElement);  // Append the <style> tag to the <head>
+        
+    </script>
+</head>
+<body>
+    <script>
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', function(event) { 
+            event.preventDefault(); 
+        });
+
+        // Prevent opening developer tools with Ctrl+Shift+I (F12)
+        document.addEventListener('keydown', function(event) { 
+            if (event.ctrlKey && (event.key === 'i' || event.keyCode === 73) || 
+                (event.shiftKey && event.keyCode === 73) || 
+                (event.keyCode === 123)) { 
+                event.preventDefault(); 
+            }
+        });
+
+        // Prevent F12 key
+        document.addEventListener('keydown', function(event) {
+            if (event.keyCode === 123) { // F12 key
+                event.preventDefault();
+            }
+        });
+
+        // Disable certain shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.keyCode === 85) { // Ctrl+U (View Source)
+                event.preventDefault();
+            }
+        });
+
+        // Detect and warn if the console is opened
+        let devtoolsOpen = false;
+        const element = new Image();
+        Object.defineProperty(element, 'id', {
+            get: function() {
+                devtoolsOpen = true;
+                alert('Please do not use developer tools!');
+            }
+        });
+
+        setInterval(function() {
+            devtoolsOpen = false;
+            console.log(element);
+        }, 1000);
+
+        const encodedCode = 'PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBsYW5nPSJlbiI+DQo8aGVhZD4NCiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+DQogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPg0KICAgIDx0aXRsZT5JbnRlcmFjdGl2ZSBTdG9yeTwvdGl0bGU+DQogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJzdHlsZS5jc3MiPiA8IS0tIFN0YW5kYXJkIGxpbmsgdG8gZXh0ZXJuYWwgQ1NTIC0tPg0KPC9oZWFkPg0KPGJvZHk+DQogICAgPGRpdiBpZD0iYmFja0J1dHRvbkNvbnRhaW5lciI+PC9kaXY+IDwhLS0gQ29udGFpbmVyIGZvciB0aGUgYmFjayBidXR0b24gLS0+DQogICAgPGRpdiBjbGFzcz0iY29udGVudCIgaWQ9InN0b3J5Q29udGVudCI+PC9kaXY+DQoNCiAgICA8c2NyaXB0Pg0KICAgICAgICAvLyBGZXRjaCB0aGUgc3RvcnkgSlNPTiBkYXRhDQogICAgICAgIGZldGNoKCdzdG9yeURhdGEuanNvbicpDQogICAgICAgICAgICAudGhlbihyZXNwb25zZSA9PiByZXNwb25zZS5qc29uKCkpDQogICAgICAgICAgICAudGhlbihzdG9yeURhdGEgPT4gew0KICAgICAgICAgICAgICAgIGxldCBoaXN0b3J5ID0gW107IC8vIFN0b3JlIHRoZSBwYWdlIGhpc3RvcnkNCg0KICAgICAgICAgICAgICAgIC8vIEZ1bmN0aW9uIHRvIHJlbmRlciBhIHNwZWNpZmljIHBhZ2UgZHluYW1pY2FsbHkNCiAgICAgICAgICAgICAgICBmdW5jdGlvbiByZW5kZXJQYWdlKHBhZ2VJZCkgew0KICAgICAgICAgICAgICAgICAgICBjb25zdCBwYWdlID0gc3RvcnlEYXRhLmRhdGEuc3RpdGNoZXNbcGFnZUlkXTsNCiAgICAgICAgICAgICAgICAgICAgY29uc3QgY29udGVudERpdiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdG9yeUNvbnRlbnQnKTsNCiAgICAgICAgICAgICAgICAgICAgY29uc3QgaXNJbml0aWFsUGFnZSA9IHBhZ2VJZCA9PT0gc3RvcnlEYXRhLmRhdGEuaW5pdGlhbDsNCg0KICAgICAgICAgICAgICAgICAgICAvLyBDbGVhciBleGlzdGluZyBjb250ZW50DQogICAgICAgICAgICAgICAgICAgIGNvbnRlbnREaXYuaW5uZXJIVE1MID0gJyc7DQoNCiAgICAgICAgICAgICAgICAgICAgLy8gQWRkIHRoZSBzdG9yeSB0aXRsZSBvbmx5IGlmIGl0J3MgdGhlIGZpcnN0IHBhZ2UNCiAgICAgICAgICAgICAgICAgICAgaWYgKGlzSW5pdGlhbFBhZ2UpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRlbnREaXYuaW5uZXJIVE1MICs9IGA8aDE+JHtzdG9yeURhdGEudGl0bGV9PC9oMT5gOw0KICAgICAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICAgICAgLy8gQWRkIHBhZ2UgbGFiZWwNCiAgICAgICAgICAgICAgICAgICAgY29uc3QgcGFnZUxhYmVsID0gcGFnZS5jb250ZW50LmZpbmQoaXRlbSA9PiBpdGVtLnBhZ2VMYWJlbCk/LnBhZ2VMYWJlbDsNCiAgICAgICAgICAgICAgICAgICAgaWYgKHBhZ2VMYWJlbCkgew0KICAgICAgICAgICAgICAgICAgICAgICAgY29udGVudERpdi5pbm5lckhUTUwgKz0gYDxoMj4ke3BhZ2VMYWJlbH08L2gyPmA7DQogICAgICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgICAgICAvLyBBZGQgbWFpbiBzdG9yeSB0ZXh0DQogICAgICAgICAgICAgICAgICAgIGNvbnN0IG1haW5UZXh0ID0gcGFnZS5jb250ZW50LmZpbHRlcihpdGVtID0+IHR5cGVvZiBpdGVtID09PSAnc3RyaW5nJyk7DQogICAgICAgICAgICAgICAgICAgIG1haW5UZXh0LmZvckVhY2godGV4dCA9PiB7DQogICAgICAgICAgICAgICAgICAgICAgICBjb250ZW50RGl2LmlubmVySFRNTCArPSBgPHA+JHt0ZXh0fTwvcD5gOw0KICAgICAgICAgICAgICAgICAgICB9KTsNCg0KICAgICAgICAgICAgICAgICAgICAvLyBSZW5kZXIgYXZhaWxhYmxlIG9wdGlvbnMNCiAgICAgICAgICAgICAgICAgICAgY29uc3Qgb3B0aW9uc0RpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOw0KICAgICAgICAgICAgICAgICAgICBvcHRpb25zRGl2LmNsYXNzTGlzdC5hZGQoJ29wdGlvbnMnKTsNCiAgICAgICAgICAgICAgICAgICAgcGFnZS5jb250ZW50LmZvckVhY2goaXRlbSA9PiB7DQogICAgICAgICAgICAgICAgICAgICAgICBpZiAoaXRlbS5vcHRpb24pIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBidXR0b24gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdidXR0b24nKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBidXR0b24uY2xhc3NMaXN0LmFkZCgnYnV0dG9uJyk7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgYnV0dG9uLnRleHRDb250ZW50ID0gaXRlbS5vcHRpb247DQoNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoaXRlbS5saW5rUGF0aCkgew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyBJZiB0aGVyZSdzIGEgbGlua1BhdGgsIGdvIHRvIHRoYXQgcGFnZQ0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBidXR0b24ub25jbGljayA9ICgpID0+IHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGhpc3RvcnkucHVzaChwYWdlSWQpOyAvLyBTYXZlIGN1cnJlbnQgcGFnZSBpbiBoaXN0b3J5DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZW5kZXJQYWdlKGl0ZW0ubGlua1BhdGgpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8vIElmIG5vIGxpbmtQYXRoIChudWxsKSwganVzdCBzaG93IGEgbWVzc2FnZSBvciBkaXNhYmxlIGJ1dHRvbg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBidXR0b24ub25jbGljayA9ICgpID0+IGFsZXJ0KCJObyBmdXJ0aGVyIGFjdGlvbiBhdmFpbGFibGUuIik7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgb3B0aW9uc0Rpdi5hcHBlbmRDaGlsZChidXR0b24pOw0KICAgICAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgICAgICB9KTsNCg0KICAgICAgICAgICAgICAgICAgICAvLyBBcHBlbmQgb3B0aW9ucyBpZiB0aGV5IGV4aXN0DQogICAgICAgICAgICAgICAgICAgIGlmIChvcHRpb25zRGl2LmNoaWxkcmVuLmxlbmd0aCA+IDApIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRlbnREaXYuYXBwZW5kQ2hpbGQob3B0aW9uc0Rpdik7DQogICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgICBjb250ZW50RGl2LmlubmVySFRNTCArPSBgPHA+VGhlIHN0b3J5IGVuZHMgaGVyZS4gVGhhbmsgeW91IGZvciByZWFkaW5nITwvcD5gOw0KICAgICAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICAgICAgLy8gQWRkIHRoZSBCYWNrIGJ1dHRvbiBvdXRzaWRlIHRoZSBjb250ZW50IGJveCwgaW4gYSBkaWZmZXJlbnQgY29udGFpbmVyDQogICAgICAgICAgICAgICAgICAgIGNvbnN0IGJhY2tCdXR0b25Db250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmFja0J1dHRvbkNvbnRhaW5lcicpOw0KICAgICAgICAgICAgICAgICAgICBiYWNrQnV0dG9uQ29udGFpbmVyLmlubmVySFRNTCA9ICcnOyAvLyBDbGVhciBhbnkgcHJldmlvdXMgYmFjayBidXR0b24NCiAgICAgICAgICAgICAgICAgICAgaWYgKGhpc3RvcnkubGVuZ3RoID4gMCkgew0KICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgYmFja0J1dHRvbiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2J1dHRvbicpOw0KICAgICAgICAgICAgICAgICAgICAgICAgYmFja0J1dHRvbi5jbGFzc0xpc3QuYWRkKCdidXR0b24nKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tCdXR0b24udGV4dENvbnRlbnQgPSAiQmFjayI7DQogICAgICAgICAgICAgICAgICAgICAgICBiYWNrQnV0dG9uLm9uY2xpY2sgPSAoKSA9PiB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgcHJldmlvdXNQYWdlID0gaGlzdG9yeS5wb3AoKTsgLy8gR2V0IHRoZSBsYXN0IHBhZ2UNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICByZW5kZXJQYWdlKHByZXZpb3VzUGFnZSk7IC8vIFJlbmRlciB0aGUgcHJldmlvdXMgcGFnZQ0KICAgICAgICAgICAgICAgICAgICAgICAgfTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tCdXR0b25Db250YWluZXIuYXBwZW5kQ2hpbGQoYmFja0J1dHRvbik7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICAvLyBSZW5kZXIgdGhlIGluaXRpYWwgcGFnZQ0KICAgICAgICAgICAgICAgIHJlbmRlclBhZ2Uoc3RvcnlEYXRhLmRhdGEuaW5pdGlhbCk7DQogICAgICAgICAgICB9KQ0KICAgICAgICAgICAgLmNhdGNoKGVycm9yID0+IHsNCiAgICAgICAgICAgICAgICBjb25zb2xlLmVycm9yKCdFcnJvciBsb2FkaW5nIHRoZSBzdG9yeSBkYXRhOicsIGVycm9yKTsNCiAgICAgICAgICAgIH0pOw0KICAgIDwvc2NyaXB0Pg0KPC9ib2R5Pg0KPC9odG1sPg0=';
+        const decodedCode = decodeURIComponent(escape(atob(encodedCode)));  // Decode the HTML content
+        document.write(decodedCode);
+    </script>
+</body>
+</html>
